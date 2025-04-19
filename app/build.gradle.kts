@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.hilt)
+    kotlin("kapt")
 }
 
 android {
@@ -49,13 +51,25 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // ViewModel dependency
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)     // Core ViewModel support
+    implementation(libs.androidx.lifecycle.viewmodel.compose) // ViewModel integration with Jetpack Compose
+    implementation(libs.androidx.lifecycle.runtime.ktx)       // Lifecycle-aware coroutines (needed for ViewModelScope)
+    implementation(libs.androidx.lifecycle.runtime.compose)   // Lifecycle Compose support (e.g., rememberLifecycleObserver)
+    implementation(libs.androidx.lifecycle.livedata.ktx)      // (Optional) LiveData support — only if you plan to use LiveData
+
+    // Hilt dependency
+    kapt(libs.dagger.hilt.compiler)
+    implementation(libs.dagger.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose) // For Compose + Hilt integration
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
