@@ -2,17 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.hilt)
+    alias(libs.plugins.kotlin.serialization)
     kotlin("kapt")
 }
 
 android {
     namespace = "com.example.pokemoncardcollector"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.pokemoncardcollector"
         minSdk = 34
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -58,6 +59,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
     // ViewModel dependency
     implementation(libs.androidx.lifecycle.viewmodel.ktx)     // Core ViewModel support
     implementation(libs.androidx.lifecycle.viewmodel.compose) // ViewModel integration with Jetpack Compose
@@ -69,6 +73,16 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose) // For Compose + Hilt integration
+
+    // Retrofit, OkHttp, Kotlin-Serialization
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlin.serialization.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Coil - for images
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
