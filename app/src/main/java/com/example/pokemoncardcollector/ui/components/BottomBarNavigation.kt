@@ -1,7 +1,7 @@
 package com.example.pokemoncardcollector.ui.components
 
 import android.annotation.SuppressLint
-import androidx.compose.material.icons.Icons
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -11,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.pokemoncardcollector.R
 import com.example.pokemoncardcollector.domain.model.NavigationItem
 import com.example.pokemoncardcollector.domain.model.Screen
 
@@ -32,10 +34,10 @@ fun BottomBarNavigation(
                     // Add navigation here
                 },
                 icon = {
-                    item.icon
-                },
-                label = {
-                    Text(text = item.title)
+                    Icon(
+                        painter = painterResource(item.icon),
+                        contentDescription = "${item.title}"
+                    )
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
@@ -61,22 +63,22 @@ fun BottomBarNavigationPreview() {
 val navigationItems = listOf(
     NavigationItem(
         title = "Home",
-        icon = Icons.Default,
+        icon = R.drawable.home,
         route = Screen.Home.route,
     ),
     NavigationItem(
         title = "Card Sets",
-        icon = Icons.Default,
+        icon = R.drawable.layers,
         route = Screen.CardSets.route,
     ),
     NavigationItem(
         title = "Search",
-        icon = Icons.Default,
+        icon = R.drawable.search,
         route = Screen.Search.route,
     ),
     NavigationItem(
         title = "Profile",
-        icon = Icons.Default,
+        icon = R.drawable.profile,
         route = Screen.Profile.route,
     ),
 )
