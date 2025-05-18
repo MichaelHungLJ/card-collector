@@ -30,7 +30,7 @@ fun CardComponent(
     modifier: Modifier = Modifier.fillMaxWidth(),
     cardItem: Card,
 ) {
-    Column (
+    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround,
     ) {
@@ -39,7 +39,7 @@ fun CardComponent(
             cardUrl = cardItem.images.large,
             modifier = Modifier.padding(top = 8.dp),
         )
-        
+
         Spacer(modifier = Modifier.padding(8.dp))
 
         CardDetails(
@@ -65,8 +65,7 @@ fun CardImage(
             modifier = modifier,
             contentScale = ContentScale.Crop
         )
-    }
-    else {
+    } else {
         AsyncImage(
             model = cardUrl,
             contentDescription = null,
@@ -85,12 +84,12 @@ fun CardDetails(
         modifier = modifier.padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Row (
+        Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp, 0.dp)
-        ){
+        ) {
             Text(
                 text = "Name: ${cardItem.name}",
             )
@@ -101,13 +100,13 @@ fun CardDetails(
             )
         }
 
-        Row (
+        Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp, 0.dp)
-        ){
+        ) {
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -165,6 +164,7 @@ fun CardDetailsPreview() {
         modifier = Modifier
     )
 }
+
 private val mockCard = Card(
     id = "xy7-54",
     name = "Gardevoir EX",
