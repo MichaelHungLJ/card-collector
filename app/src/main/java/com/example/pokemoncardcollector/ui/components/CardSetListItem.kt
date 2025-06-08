@@ -31,6 +31,7 @@ import coil.compose.AsyncImage
 import com.example.pokemoncardcollector.R
 import com.example.pokemoncardcollector.domain.model.CardSet
 import com.example.pokemoncardcollector.domain.model.CardSetImage
+import com.example.pokemoncardcollector.ui.theme.PokemonCardCollectorTheme
 
 @Composable
 fun CardSetListItem (
@@ -136,10 +137,12 @@ fun CardSetImage(
 @Preview(showBackground = true)
 @Composable
 fun CardSetListItemPreview() {
-    CardSetListItem(
-        cardSet = mockCardSet,
-        onClick = {}
-    )
+    PokemonCardCollectorTheme {
+        CardSetListItem(
+            cardSet = mockCardSet,
+            onClick = {}
+        )
+    }
 }
 
 
