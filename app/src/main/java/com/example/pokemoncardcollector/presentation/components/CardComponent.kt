@@ -1,4 +1,4 @@
-package com.example.pokemoncardcollector.ui.components
+package com.example.pokemoncardcollector.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

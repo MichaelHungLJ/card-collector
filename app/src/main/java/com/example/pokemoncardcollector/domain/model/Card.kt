@@ -1,19 +1,24 @@
 package com.example.pokemoncardcollector.domain.model
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Card(
-    val id: String,
-    val name: String,
-    val supertype: String,
-    val subtypes: List<String>,
-    val types: List<String>,
-    val images: CardImage,
-    val set: CardSet,
-    val rarity: String,
-    val number: String, // Api response is string, but we should use integer
+    @SerialName("id") val id: String,
+    @SerialName("name") val name: String,
+    @SerialName("supertype") val supertype: String,
+    @SerialName("subtypes") val subtypes: List<String>,
+    @SerialName("types") val types: List<String>?,
+    @SerialName("images") val images: CardImage,
+    @SerialName("set") val set: CardSet,
+    @SerialName("rarity") val rarity: String,
+    @SerialName("number") val number: String, // Api response is string, but we should use integer
 )
 
+@Serializable
 data class CardImage(
-    val small: String,
-    val large: String
+    @SerialName("small") val small: String,
+    @SerialName("large") val large: String
 )
 

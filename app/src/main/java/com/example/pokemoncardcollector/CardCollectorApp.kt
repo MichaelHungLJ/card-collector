@@ -1,7 +1,5 @@
 package com.example.pokemoncardcollector
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -10,16 +8,15 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pokemoncardcollector.domain.model.Screen
-import com.example.pokemoncardcollector.ui.components.BottomBarNavigation
-import com.example.pokemoncardcollector.ui.screens.CardSetsScreen
-import com.example.pokemoncardcollector.ui.screens.HomeScreen
-import com.example.pokemoncardcollector.ui.screens.ProfileScreen
-import com.example.pokemoncardcollector.ui.screens.SearchScreen
+import com.example.pokemoncardcollector.presentation.components.BottomBarNavigation
+import com.example.pokemoncardcollector.presentation.cartset.CardSetsScreen
+import com.example.pokemoncardcollector.presentation.home.HomeScreen
+import com.example.pokemoncardcollector.presentation.profile.ProfileScreen
+import com.example.pokemoncardcollector.presentation.search.SearchScreen
 
 @Composable
 fun CardCollectorApp() {

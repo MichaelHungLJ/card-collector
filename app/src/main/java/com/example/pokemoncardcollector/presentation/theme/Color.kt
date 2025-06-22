@@ -1,4 +1,4 @@
-package com.example.pokemoncardcollector.ui.theme
+package com.example.pokemoncardcollector.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

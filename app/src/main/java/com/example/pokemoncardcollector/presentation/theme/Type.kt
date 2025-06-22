@@ -1,4 +1,4 @@
-package com.example.pokemoncardcollector.ui.theme
+package com.example.pokemoncardcollector.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

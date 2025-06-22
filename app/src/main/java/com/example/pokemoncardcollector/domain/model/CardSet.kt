@@ -1,16 +1,21 @@
 package com.example.pokemoncardcollector.domain.model
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CardSet(
-    val id: String,
-    val name: String,
-    val series: String,
-    val printedTotal: Int,
-    val images: CardSetImage
+    @SerialName("id") val id: String,
+    @SerialName("name") val name: String,
+    @SerialName("series") val series: String,
+    @SerialName("printedTotal") val printedTotal: Int,
+    @SerialName("images") val images: CardSetImage
 )
 
+@Serializable
 data class CardSetImage(
-    val symbol: String,
-    val logo: String
+    @SerialName("symbol") val symbol: String,
+    @SerialName("logo") val logo: String
 )
 
 

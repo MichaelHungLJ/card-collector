@@ -1,4 +1,4 @@
-package com.example.pokemoncardcollector.ui
+package com.example.pokemoncardcollector.presentation
 
 import com.example.pokemoncardcollector.domain.model.CardSet
 import com.example.pokemoncardcollector.domain.model.CardSetImage

@@ -1,4 +1,4 @@
-package com.example.pokemoncardcollector.ui.components
+package com.example.pokemoncardcollector.presentation.components
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.Icon
