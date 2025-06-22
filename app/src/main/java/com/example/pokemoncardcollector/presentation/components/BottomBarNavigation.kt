@@ -72,11 +72,6 @@ val navigationItems = listOf(
         route = Screen.CardSets.route,
     ),
     NavigationItem(
-        title = "Search",
-        icon = R.drawable.search,
-        route = Screen.Search.route,
-    ),
-    NavigationItem(
         title = "Profile",
         icon = R.drawable.profile,
         route = Screen.Profile.route,

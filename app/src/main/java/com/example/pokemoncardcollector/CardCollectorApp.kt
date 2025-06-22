@@ -12,11 +12,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pokemoncardcollector.domain.model.Screen
-import com.example.pokemoncardcollector.presentation.components.BottomBarNavigation
 import com.example.pokemoncardcollector.presentation.cartset.CardSetsScreen
+import com.example.pokemoncardcollector.presentation.components.BottomBarNavigation
 import com.example.pokemoncardcollector.presentation.home.HomeScreen
 import com.example.pokemoncardcollector.presentation.profile.ProfileScreen
-import com.example.pokemoncardcollector.presentation.search.SearchScreen
 
 @Composable
 fun CardCollectorApp() {
@@ -33,8 +32,7 @@ fun CardCollectorApp() {
                     when (index) {
                         0 -> navController.navigate(Screen.Home.route)
                         1 -> navController.navigate(Screen.CardSets.route)
-                        2 -> navController.navigate(Screen.Search.route)
-                        3 -> navController.navigate(Screen.Profile.route)
+                        2 -> navController.navigate(Screen.Profile.route)
                     }
                 }
             )
@@ -43,7 +41,9 @@ fun CardCollectorApp() {
         NavHost(
             navController = navController,
             startDestination = Screen.Home.route,
-            modifier = Modifier.fillMaxSize().padding(paddingValues)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
             composable(route = Screen.Home.route) {
                 HomeScreen()
@@ -51,10 +51,6 @@ fun CardCollectorApp() {
 
             composable(route = Screen.CardSets.route) {
                 CardSetsScreen()
-            }
-
-            composable(route = Screen.Search.route) {
-                SearchScreen()
             }
 
             composable(route = Screen.Profile.route) {
