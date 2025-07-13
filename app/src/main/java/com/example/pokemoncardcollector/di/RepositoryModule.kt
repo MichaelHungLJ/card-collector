@@ -1,8 +1,9 @@
 package com.example.pokemoncardcollector.di
 
 import com.example.pokemoncardcollector.data.remote.CardApi
-import com.example.pokemoncardcollector.data.repository.CardRepositoryImpl
-import com.example.pokemoncardcollector.domain.repository.CardRepository
+import com.example.pokemoncardcollector.data.remote.SetApi
+import com.example.pokemoncardcollector.data.repository.RepositoryImpl
+import com.example.pokemoncardcollector.domain.repository.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +16,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideCardRepository(
-        cardApi: CardApi
-    ): CardRepository {
-        return CardRepositoryImpl(cardApi)
+    fun provideRepository(
+        cardApi: CardApi,
+        setApi: SetApi,
+    ): Repository {
+        return RepositoryImpl(cardApi, setApi)
     }
 }

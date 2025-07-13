@@ -1,6 +1,7 @@
 package com.example.pokemoncardcollector.di
 
 import com.example.pokemoncardcollector.data.remote.CardApi
+import com.example.pokemoncardcollector.data.remote.SetApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -49,8 +50,14 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUserApi(retrofit: Retrofit): CardApi {
+    fun provideCardApi(retrofit: Retrofit): CardApi {
         return retrofit.create(CardApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetApi(retrofit: Retrofit): SetApi {
+        return retrofit.create(SetApi::class.java)
     }
 
 }
