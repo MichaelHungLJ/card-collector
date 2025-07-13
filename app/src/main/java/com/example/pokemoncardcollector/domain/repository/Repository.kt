@@ -1,10 +1,11 @@
 package com.example.pokemoncardcollector.domain.repository
 
-import com.example.pokemoncardcollector.data.remote.CardApi
 import com.example.pokemoncardcollector.domain.model.Card
-import javax.inject.Inject
+import com.example.pokemoncardcollector.domain.model.CardSet
 
-interface CardRepository {
+interface Repository {
 
     suspend fun getCardById(id: String): Card
+
+    suspend fun getAllSets(): List<CardSet>
 }

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokemoncardcollector.domain.model.CardSet
 import com.example.pokemoncardcollector.presentation.MockData
 import com.example.pokemoncardcollector.presentation.components.CardSetListItem
@@ -14,14 +15,17 @@ import com.example.pokemoncardcollector.presentation.theme.PokemonCardCollectorT
 
 @Composable
 fun CardSetsScreen(
+    setsViewModel: SetsViewModel = hiltViewModel(),
     modifier: Modifier = Modifier.fillMaxSize(),
     cardSetList: List<CardSet> = MockData.mockCardSets,
 ) {
+
+    val mockData = MockData.mockCardSets
     Surface (
         modifier = Modifier
     ) {
         LazyColumn {
-            cardSetList.forEach {
+            mockData.forEach {
                 item { CardSetListItem(cardSet = it, onClick = {} ) }
             }
         }
