@@ -1,30 +1,39 @@
 package com.example.pokemoncardcollector.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material3.Icon
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import coil.compose.AsyncImage
 import com.example.pokemoncardcollector.R
 import com.example.pokemoncardcollector.domain.model.CardSet
@@ -37,67 +46,102 @@ fun CardSetListItem (
     onClick: () -> Unit,
     cardSet: CardSet,
 ) {
-    Column {
+    Card(
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        onClick = onClick,
+    ) {
         Row (
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-            ,
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
-        ){
-            CardSetImage(cardSet.images.logo)
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
-            Spacer(modifier = Modifier.width(4.dp))
-
-            CardSetDetails(
-                cardSetName = cardSet.name,
-                printedTotal = cardSet.printedTotal,
-                onClick = onClick,
-                modifier = Modifier.weight(1f)
+            CardSetImage(
+                cardSetLogoUrl = cardSet.images.logo,
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(RoundedCornerShape(8.dp))
             )
 
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Row (
+                modifier = Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+
+                Column (
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    Text(
+                        text = cardSet.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = cardSet.series,
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                CardCounter(
+                    modifier = Modifier,
+                    printedTotal = cardSet.printedTotal
+                )
+            }
+
+
         }
-
-
     }
+}
+
+
+
+@Composable
+fun CardCounter(
+    modifier: Modifier = Modifier,
+    printedTotal: Int,
+) {
+    Text(
+        text = "0/$printedTotal",
+        modifier = modifier,
+        style = MaterialTheme.typography.titleSmall,
+        textAlign = TextAlign.Left,
+    )
 }
 
 @Composable
 fun CardSetDetails(
     cardSetName: String,
-    printedTotal: Int,
+    cardSetSeries: String,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
 ) {
-    Row (
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        horizontalAlignment = Alignment.Start,
     ) {
 
         Text(
             text = cardSetName,
             style = MaterialTheme.typography.titleMedium,
-            modifier = modifier.padding(start = 16.dp)
         )
+
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Total cards: $printedTotal",
-            style = MaterialTheme.typography.bodyMedium,
-                modifier = modifier.padding(start = 24.dp)
+            text = cardSetSeries,
+            style = MaterialTheme.typography.bodySmall,
         )
-
-        TextButton(
-            onClick = onClick,
-            modifier = modifier
-                .size(40.dp)
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = "More info"
-            )
-        }
-
 
     }
 
@@ -107,8 +151,6 @@ fun CardSetDetails(
 fun CardSetImage(
     cardSetLogoUrl: String,
     modifier: Modifier = Modifier
-        .size(80.dp)
-        .clip(RoundedCornerShape(8.dp))
 ) {
     val isPreview = LocalInspectionMode.current
 
@@ -144,13 +186,12 @@ fun CardSetListItemPreview() {
 }
 
 
-@Preview(showBackground = true, widthDp = 400)
+@Preview(showBackground = true)
 @Composable
 fun CardSetDetailsPreview() {
     CardSetDetails(
         cardSetName = mockCardSet.name,
-        printedTotal = mockCardSet.printedTotal,
-        onClick = {}
+        cardSetSeries = mockCardSet.series,
     )
 }
 
